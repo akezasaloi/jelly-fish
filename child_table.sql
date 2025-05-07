@@ -41,6 +41,36 @@ GROUP BY birth_year
 ORDER BY children_count DESC
 LIMIT 1;
 
+CREATE TABLE malnutrition.disease_table(
+   disease_id VARCHAR (10) PRIMARY KEY,
+   child_id VARCHAR (10) NOT NULL,
+   date_of_record DATE NOT NULL,
+   disease VARCHAR (100) NOT NULL
+   CONSTRAINT child_fk FOREIGN KEY(child_id) REFERENCES malnutrition.child_details(child_id)
+);
+INSERT INTO malnutrition.disease_table(disease_id,child_id,date_of_record,disease)
+VALUES
+('d001','COO1','2024-10-20','Measles'),
+('d002','COO2','2024-10-20','Typhoid'),
+('d003','COO3','2024-10-20','Kwashiorkor'),
+('d004','COO4','2024-10-20','Malaria'),
+('d005','COO5','2024-10-20','Measles'),
+('d006','COO6','2024-10-20','Malaria'),
+('d007','COO1','2025-3-20','Diabetes'),
+('d008','COO2','2025-3-20','Diabetes'),
+('d009','COO3','2025-3-20','Obesity'),
+('d0010','COO4','2025-3-20','Malaria'),
+('d0011','COO5','2025-3-20','Malaria'),
+('d0012','COO6','2025-3-20','Malaria'),
+('d0013','COO7','2025-3-20','Cholera'),
+('d0014','COO8','2025-3-20','Cholera'),
+('d0015','COO9','2025-3-20','Kwashiorkor');
 
 
+select * FROM malnutrition.disease_table;
 
+SELECT count(*) AS
+children_under_ten_with_diseases
+FROM
+malnutrition.disease_table
+WHERE AGE (CURRENT_DATE,date_of_record)< INTERVAL '4 months';
