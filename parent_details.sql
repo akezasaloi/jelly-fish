@@ -47,3 +47,4 @@ select COUNT(*)
 	from malnutrition.parent_details where LEFT(parent_name, 1) in ('k', 'K'); 
     
 
+
