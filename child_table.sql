@@ -34,7 +34,7 @@ malnutrition.child_details
 WHERE age (CURRENT_DATE,date_of_birth)  < INTERVAL'1 year 10 months';
 
 ----In which year were most children born
---
+
 SELECT EXTRACT (YEAR FROM date_of_birth) AS birth_year, COUNT(*) AS children_count
 FROM malnutrition.child_details
 GROUP BY birth_year
